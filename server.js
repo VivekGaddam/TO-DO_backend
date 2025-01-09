@@ -3,9 +3,12 @@ import mongoose from "mongoose";
 import { Task, User } from "./models/todomodel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import cors from "cors";  // Add this import
 
 const app = express();
 app.use(express.json());
+app.use(cors());  
+
 const JWT_SECRET = "secret";
 
 // MongoDB Connection
@@ -24,6 +27,7 @@ const authenticateToken = (req, res, next) => {
         res.status(403).send("Invalid token.");
     }
 };
+
 app.post("/register", async (req, res) => {
     const { username, password } = req.body;
 
@@ -41,7 +45,6 @@ app.post("/register", async (req, res) => {
         res.status(500).send("Error registering user: " + error.message);
     }
 });
-
 
 // Login Route
 app.post("/login", async (req, res) => {

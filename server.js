@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import { Task, User } from "./models/todomodel.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const app = express();
